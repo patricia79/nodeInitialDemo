@@ -1,8 +1,39 @@
+
 const multer = require('multer')
 const path = require('path')
 
 
-// Defining storage of files 
+// carregar la ruta de l'arxiu
+const FILE_PATH = 'uploads';
+
+// configura multer
+const upload = multer({
+    dest: `${FILE_PATH}/`
+});
+
+const fileFilter = (req, file, cb) => {
+    const fileTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
+
+    if (fileTypes.some(fileType => fileType === file.mimetype)) return cb(null, true);
+
+    return cb(new Error('Només es permeten arxius amb extensions .jpeg/.jpg, .png and .gif'), false);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Defining storage of files 
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '../public/uploads'),
     filename: function (req, file, cb) {
@@ -10,14 +41,6 @@ const storage = multer.diskStorage({
     }
 });
 
-// Filterting by mimetypes
-const fileFilter = (req, file, cb) => {
-    const fileTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'];
-
-    if (fileTypes.some(fileType => fileType === file.mimetype)) return cb(null, true);
-
-    return cb(new Error('Only .jpeg/.jpg, .png and .gif formats can be used!'), false);
-}
 
 const maxSize = 1 * 1000 * 1000;
 
@@ -46,4 +69,4 @@ const upload = (req, res, next) => {
 
 module.exports = {
 upload 
-}
+}*/
