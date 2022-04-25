@@ -9,7 +9,7 @@ const morgan = require('morgan');
 const _ = require('lodash');
 const app = express();
 const multer = require("multer");
-const config = require("../config");
+const config = require("../../config");
 require ( 'dotenv' ).config()
 const {user} = require('../controllers/userCtrl')
 const {uploadPost} = require('../controllers/uploadCtrl')
