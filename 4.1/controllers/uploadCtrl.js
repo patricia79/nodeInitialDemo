@@ -1,9 +1,12 @@
+
+"use strict";
+
 // carregar un sol arxiu
 
 const uploadPost = (req, res) => {
   try {
     if (!req.files) {
-      res.status(500).json({ message: "Arxiu no carregat" });
+      res.status(400).json({ message: "File not uploaded !!" });// arxiu no carregat
     } else {
       // Es fa servir el nom del camp d'entrada (és a dir, "avatar") per a recuperar l'arxiu carregat
       let avatar = req.files.avatar;
@@ -14,20 +17,13 @@ const uploadPost = (req, res) => {
       //envia resposta
       res.send({
         status: (200).json({
-          message: "File uploaded successfully!! Congratulations!!!",
-          data: {
-            name: avatar.name,
-            mimetype: avatar.mimetype,
-            size: avatar.size,
-          },
+          message: "File uploaded successfully!! Congratulations!!!" // arxiu carregat
         }),
       });
     }
   } catch (err) {
-    res.status(404).json({ message: "Error 404, page not found" });
+    res.status(500).json({ message: "Error 404, page not found" });
   }
 };
 
-module.exports = {
-  uploadPost,
-};
+module.exports = uploadPost;

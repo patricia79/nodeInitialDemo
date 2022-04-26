@@ -1,6 +1,9 @@
+
+"use strict";
+
 const config = require("../config");
 
-const user = (req, res) => {
+const userGet = (req, res) => {
   try {
     res.status(200).json({
       name: "Patricia",
@@ -12,4 +15,4 @@ const user = (req, res) => {
   }
 };
 
-module.exports = { user };
+module.exports =  userGet;

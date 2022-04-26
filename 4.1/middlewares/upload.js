@@ -19,7 +19,7 @@ const fileFilter = (req, file, cb) => {
     return cb(new Error('Només es permeten arxius amb extensions .jpeg/.jpg, .png and .gif'), false);
 }
 
-
+module.exports = fileFilter;
 
 
 

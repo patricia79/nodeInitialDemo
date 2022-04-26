@@ -1,0 +1,22 @@
+{
+  "name": "api-rest",
+  "version": "2.0.0",
+  "description": "Projecte d'API RESTful amb Node.js i Express - Sprint 4.1",
+  "main": "app.js",
+  "scripts": {
+    
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patricia79/nodeInitialDemo.git"
+  },
+  "author": "Patricia González",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patricia79/nodeInitialDemo/issues"
+  },
+  "homepage": "https://github.com/patricia79/nodeInitialDemo#readme"
+}

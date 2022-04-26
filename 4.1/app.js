@@ -9,13 +9,13 @@ const morgan = require('morgan');
 const _ = require('lodash');
 const app = express();
 const multer = require("multer");
-const config = require("../../config");
-require ( 'dotenv' ).config()
-const {user} = require('../controllers/userCtrl')
-const {uploadPost} = require('../controllers/uploadCtrl')
-const {error} = require('../controllers/uploadCtrl')
-const {upload} = require('../middlewares/upload')
+const config = require("./config");
+const userController = require('./controllers/userCtrl')
+const uploadPost = require('./controllers/uploadCtrl')
+const fileFilter = require('./middlewares/upload')
+const error = require('./controllers/error')
 
+require ( 'dotenv' ).config()
 
 // habilitar la càrrega d'arxius
 app.use(fileUpload({
@@ -32,15 +32,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(express.json());
 
-
-app.get("/userCtrl", user);
+// http://localhost:3000/mariano
+app.get("/user", userController);
+app.post('/upload', fileFilter, uploadPost);
 app.get("/*", error);
 app.post("/*", error);
 app.put("/*", error);
 app.delete("/*", error);
-app.post('/uploadCtrl', async (req, res));
 
 
 app.listen(config.port, () => {
-  console.log(`API REST en http://localhost:${config.port}/user`);
+  console.log(`API REST en http://localhost:${config.port}/`);
 });

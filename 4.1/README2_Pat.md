@@ -15,7 +15,7 @@ Esto es lo que hace cada uno de estos paquetes:
 - lodash- Una biblioteca de JavaScript que proporciona funciones de utilidad para matrices, números, objetos, cadenas, etc.
 
 1.Crear servidor Express
-Después de instalar las dependencias requeridas, comencemos a crear nuestro servidor Express.
+Después de instalar las dependencias requeridas, comencemos creo mi servidor Express.
 
 
 
