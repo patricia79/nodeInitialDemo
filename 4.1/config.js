@@ -1,5 +1,2 @@
-module.exports = {
-    
- port: process.env.PORT || 3009,
 
-}
+module.exports = {port: process.env.PORT || 3009}

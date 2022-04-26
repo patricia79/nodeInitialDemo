@@ -33,6 +33,61 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:3009/user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3009/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3009",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3009/time?usuario=Freia&password=Apple",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3009/time?usuario=Freia&password=Apple",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3009",
+					"path": [
+						"time"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "Freia"
+						},
+						{
+							"key": "password",
+							"value": "Apple"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

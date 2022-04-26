@@ -11,8 +11,11 @@ const app = express();
 const multer = require("multer");
 const config = require("./config");
 const userController = require('./controllers/userCtrl')
+const timeController = require('./controllers/timeCtrl')
 const uploadPost = require('./controllers/uploadCtrl')
 const fileFilter = require('./middlewares/upload')
+const cacheMiddleware = require('./middlewares/cacheMiddle')
+const checkAuth = require('./middlewares/checkAuth')
 const error = require('./controllers/error')
 
 require ( 'dotenv' ).config()
@@ -21,7 +24,7 @@ require ( 'dotenv' ).config()
 app.use(fileUpload({
   createParentPath: true,
   limits: { 
-      fileSize: 2 * 1024 * 1024 * 1024 //2MB max file(s) size
+      fileSize: 6 * 1024 * 1024 * 1024 //6MB max file(s) size
   },
 }));
  
@@ -32,9 +35,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(express.json());
 
-// http://localhost:3000/mariano
+// http://localhost:3009/mariano
 app.get("/user", userController);
 app.post('/upload', fileFilter, uploadPost);
+app.post('/time', checkAuth, cacheMiddleware, timeController);
 app.get("/*", error);
 app.post("/*", error);
 app.put("/*", error);

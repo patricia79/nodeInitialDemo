@@ -6,7 +6,7 @@
 const uploadPost = (req, res) => {
   try {
     if (!req.files) {
-      res.status(400).json({ message: "File not uploaded !!" });// arxiu no carregat
+      res.status(400).json({ message: "Bad request" });// 
     } else {
       // Es fa servir el nom del camp d'entrada (és a dir, "avatar") per a recuperar l'arxiu carregat
       let avatar = req.files.avatar;
@@ -21,8 +21,8 @@ const uploadPost = (req, res) => {
         }),
       });
     }
-  } catch (err) {
-    res.status(500).json({ message: "Error 404, page not found" });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
