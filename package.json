@@ -5,19 +5,19 @@
   "main": "config.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
+    "dev": "nodemon app.js"
  
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/patricia79/3--Sprint-3-Patterns.git"
+    "url": "https://github.com/patricia79/nodeInitialDemo.git"
   },
   "author": "\"Patricia González\",",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/patricia79/3--Sprint-3-Patterns/issues"
+    "url": "https://github.com/patricia79/nodeInitialDemo/issues"
   },
-  "homepage": "https://github.com/patricia79/3--Sprint-3-Patterns#readme",
+  "homepage": "https://github.com/patricia79/nodeInitialDemo#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
