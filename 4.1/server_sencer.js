@@ -33,12 +33,5 @@ app.listen(config.port, () => {
   console.log(`API REST en http://localhost:${config.port}/user`);
 });
 /*
-app.post("/upload", upload.single("image"), (req, res) => {
-  console.log(req.file);
-  if (!req.file) {
-    res.status(400).json({ error: "no arxiu png, jpg o gif" });
-  } else {
-    res.status(200).json({ result: "image uploaded" });
-  }
-});*/
+app.post("/upload", upload.single("image"), ;*/
 
