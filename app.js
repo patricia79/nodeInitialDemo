@@ -29,7 +29,9 @@ app.use(fileUpload({
 }));
  
 // añadir middlewares
-app.use(cors());
+app.use(cors({
+  origin:'*'
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
