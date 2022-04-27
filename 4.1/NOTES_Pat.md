@@ -18,21 +18,16 @@ Esto es lo que hace cada uno de estos paquetes:
 Después de instalar las dependencias requeridas, comencemos creo mi servidor Express.
 
 
-
-
 # Ignora la carpeta node_modules
 node_modules/
 
 # Ignora todos los archivos de texto
 *.txt
 
-# Ignora los archivos relacionados a API keys
+# Ignora los archivos relacionados a API keys y db
 .env
 .env_test
 
-# Ignora archivos de configuración SASS
-.cache
 
-# Ignora el package-lock
-package-lock.json/
+
 
