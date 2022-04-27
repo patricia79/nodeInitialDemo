@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "f7964234-3626-45f6-8ab3-a4330bdbcdb6",
+		"name": "4.1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/waltr/Desktop/transit.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3009/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3009",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3009/user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3009/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3009",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3009/time?usuario=Freia&password=Apple",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:3009/time?usuario=Freia&password=Apple",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3009",
+					"path": [
+						"time"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "Freia"
+						},
+						{
+							"key": "password",
+							"value": "Apple"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
