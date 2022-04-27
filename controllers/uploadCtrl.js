@@ -9,7 +9,7 @@ const uploadPost = ((req, res) => {
      
     } else {
       // Es fa servir el nom del camp d'entrada (és a dir, "avatar") per a recuperar l'arxiu carregat
-      let avatar = req.files.avatar;
+      let avatar = req.files.image;
 
       // S'utilitza el mètode mv() per a posar l'arxiu al directori de càrrega (és a dir, "uploads")
       avatar.mv("./uploads/" + avatar.name);
