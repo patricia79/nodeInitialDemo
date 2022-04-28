@@ -1,50 +1,19 @@
+# 🧬Instruccions per a iniciar el projecte:
 
-# Node Initial Project
+1. Instal·lar els mòduls amb "npm install"
 
-### Project Structure
+2. Per a iniciar el server:
 
-Main structure of node.js project. Folders / files:
+   - Mode producció: npm start
+   - Mode desenvolupament: npm run dev
 
-- <b>\_\_tests__</b>. Tests folder. See [Jest Docs](https://jestjs.io/es-ES/docs/configuration) and [Chai Docs](https://www.chaijs.com/)
-- <b>app</b>:
-    - <b>config</b>
-    - <b>controllers</b>
-    - <b>crons</b>
-    - <b>middleware</b>
-    - <b>models</b>
-    - <b>routes</b>
-    - <b>tmp</b>
-    - <b>app.js</b>. Entry point.
-- <b>.env</b>. Environment descriptor. See [dotenv doc](https://www.npmjs.com/package/dotenv).
-- <b>.eslintrc</b>. Linter JS, static code analyzer. See [EsLint Docs](https://eslint.org/docs/user-guide/configuring/configuration-files).
-- <b>.prettierignore</b>. Code formatter. See [Prettier Config](https://prettier.io/docs/en/configuration.html) and [Prettier Ignore](https://prettier.io/docs/en/ignore.html).
-- <b>.ecosystem.config.js</b>. Process Manage at runtime. See [PM2 Docs](https://pm2.keymetrics.io/).
-- <b>package.json</b>.
+3. Si fem a un navegador o al postman:
 
-### Import project for use with WebStorm
+- (GET) localhost:3009/user : 
+  Et retorna un json amb el meu nom, la meva edat i la URL.
 
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-![Open Project](img/webstorm_open.png)
+- (POST) localhost:3009/upload : 
+  Carrega arxius amb extensions .jpg .png y .gif i els guarda al servidor
 
-
-### Import project for use with Visual Studio Code
-
-Follow the steps below:
-* Clone the project from the Github Platform. Execute:
-  ```
-  git clone [url project]
-  ```
-* Open the project downloaded.
-  ![Open Project](img/VSC_open.png)
-
-
-### Utilities
-
-* [Node Developers Guide](https://nodejs.dev/learn)
-* **.gitignore file** configuration. See [Official Docs](https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files).
-* **Git branches**. See [Official Docs](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell)
+- (POST) localhost:3009/time : 
+ Rep per POST com a paràmetre un JSON amb el nom d'usuari i et retorna un json que conté l'hora i data actual, després d'haver comprovat una autorització bàsica
