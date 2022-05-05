@@ -5,8 +5,7 @@
 const uploadPost = ((req, res) => {
   try {
     if (!req.files) {
-      res.status(400).json({ message: "Bad request" });// 
-     
+      res.status(400).json({ message: "No hi ha cap arxiu" });// 
     } else {
       // Es fa servir el nom del camp d'entrada (és a dir, "avatar") per a recuperar l'arxiu carregat
       let avatar = req.files.image;
