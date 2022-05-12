@@ -5,7 +5,20 @@ module.exports = (sequelize, type) => {
             primaryKey: true,
             autoIncrement: true
         },
-        dice1: type.INTEGER,
-        dice2: type.INTEGER,
-       // idPlayer: type.INTEGER,  
+        dice1: {
+            type: type.INTEGER,
+            allowNull: false,
+          },
+          dice2: {
+            type: type.INTEGER,
+            allowNull: false,
+          },
+          result: {
+            type: type.INTEGER,
+            allowNull: false,
+          },
+          ranking: {
+            type: type.INTEGER,
+            allowNull: false,
+          }
        })}

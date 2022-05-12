@@ -5,7 +5,13 @@ module.exports = (sequelize, type) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    namePlayer: type.STRING,
-    registerDate: type.DATE,
+    namePlayer: {
+      type: type.STRING,
+      allowNull: false,
+    },
+    registerDate: {
+      type: type.DATE,
+      allowNull: false,
+    }
   });
 };
