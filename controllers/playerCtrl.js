@@ -1,6 +1,6 @@
 
 const Player = require("../models/playerMdl");
-const router = require("express").Router();
+
 
 //TODO POST /players: crea un jugador/ addPlayer
 
@@ -39,6 +39,5 @@ const playersGet = (req, res) => {
 */
 
 module.exports = {
-  addPlayer,
-   router
+  addPlayer
  }

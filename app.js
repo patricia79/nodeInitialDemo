@@ -5,21 +5,15 @@ const config = require("./config");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const { Player } = require("./db");
-//const bcrypt = require('bcryptjs')
-const router = require("express").Router();
-const apiRouter = require("./routes/api");
+
 const addPlayer = require("./controllers/playerCtrl");
-const playersGet = require("./controllers/playerCtrl");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/api", apiRouter);
 app.post("/players", addPlayer);
 /*
 app.get("/players", playersGet);
-
-
 app.get("/*", error);
 app.post("/*", error);
 app.put("/*", error);
