@@ -38,6 +38,10 @@ const playersGet = (req, res) => {
   }
 */
 
+//TODO PUT /players: modifica el nom del jugador
+// TODO GET /players: mostra un jugador creat
+// TODO GET /players: retorna el llistat de tots els jugadors
+
 module.exports = {
   addPlayer
  }
