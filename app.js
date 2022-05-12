@@ -16,9 +16,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api", apiRouter);
 
-/*app.post("/players", playersPost);
+/*
 app.get("/players", playersGet);
 
+app.post("/players", playersPost);
 app.get("/*", error);
 app.post("/*", error);
 app.put("/*", error);

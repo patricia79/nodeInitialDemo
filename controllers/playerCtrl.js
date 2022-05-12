@@ -1,5 +1,5 @@
 
-const Player = require("../models/classPlayer");
+const Player = require("../models/playerMdl");
 
 //TODO POST /players: crea un jugador/ addPlayer
 
