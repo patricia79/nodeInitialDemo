@@ -18,7 +18,7 @@ name ="ANONYMOUS";
   res.status(500).json({ message: "Internal Server Error" });
 }}
 
-
+/*
 
 //TODO GET /players: mostra un jugador creat / Player
 
@@ -36,9 +36,9 @@ const playersGet = (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
   }
-
+*/
 
 module.exports = {
   addPlayer,
-    playersGet, router
+   router
  }

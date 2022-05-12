@@ -8,18 +8,18 @@ const { Player } = require("./db");
 //const bcrypt = require('bcryptjs')
 const router = require("express").Router();
 const apiRouter = require("./routes/api");
-const playersPost = require("./controllers/playerCtrl");
+const addPlayer = require("./controllers/playerCtrl");
 const playersGet = require("./controllers/playerCtrl");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api", apiRouter);
-
+app.post("/players", addPlayer);
 /*
 app.get("/players", playersGet);
 
-app.post("/players", playersPost);
+
 app.get("/*", error);
 app.post("/*", error);
 app.put("/*", error);
