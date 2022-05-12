@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const router = express.Router();
+
 const config = require("./config");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-require("./db");
+const { Player } = require("./db");
 //const bcrypt = require('bcryptjs')
-
+const router = require("express").Router();
 const apiRouter = require("./routes/api");
 const playersPost = require("./controllers/playerCtrl");
 const playersGet = require("./controllers/playerCtrl");
