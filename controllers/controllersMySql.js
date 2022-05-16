@@ -1,6 +1,6 @@
 const {Player, Roll} = require('../MySQLPersistence/db'),
 uniqid = require('uniqid'),
-rollDices = require('../dicesLogic/dices')
+throwFunc = require('../dicesLogic/dices')
 
 //TODO POST  crea un jugador 
 
@@ -10,8 +10,8 @@ const addPlayer = async(req, res) => {
     name? true : name = uniqid('ANONIM-')
     const playerCreated = await Player.create({name})
     res.status(201).json({player: playerCreated})
-  } catch (e){
-    res.status(500).json({message: e.message})
+  } catch (err){
+    res.status(500).json({message: err.message})
   }
 }
 
@@ -29,7 +29,7 @@ const updatePlayer = async(req, res) =>{
     })
     res.status(200).json({player})
   } catch (err){
-    res.status(404).message({message: 'NOT PLAYER'})
+    res.status(404).json ({message: 'NOT PLAYER'})
   }
 }
 
@@ -52,7 +52,7 @@ const playerRollDices = async(req, res) => {
     dice2,
     result,
     result_S
-  } = rollDices()
+  } = throwFunc()
 
   try{
     const roll = await Roll.create({
@@ -72,8 +72,8 @@ const playerRollDices = async(req, res) => {
     await Player.update({winRate},{where:{id:PlayerId}})
     const playerRolled = await Player.findAll({attributes:['name'], where:{id:PlayerId}})
     res.status(200).json({playerRolled, roll})
-  } catch (e) {
-    res.status(500).json({message:e.message})
+  } catch (err) {
+    res.status(500).json({message:err.message})
   }
 }
 
@@ -91,8 +91,8 @@ const deleteGames = async(req, res) => {
     },{where:{id:id}})
     const player = await Player.findAll({where:{id:id}})
     res.status(200).json({player})
-  } catch (e){
-    res.status(500).json({message: e.message})
+  } catch (err){
+    res.status(500).json({message: err.message})
   }
 }
 
@@ -107,7 +107,7 @@ const playerGamesList = async(req, res) => {
       where:{id:id},include:[Roll]
     })
     res.status(200).json(player)
-  } catch (e) {
+  } catch (err) {
     res.status(404).json({message:'player not found'})
   }
 }
@@ -120,8 +120,8 @@ const generalRanking = async(req, res) => {
     const sumWinRate = await Player.sum('winRate')
     const generalWinRate = sumWinRate/totalPlayers
     res.status(200).json({generalWinRate})
-  } catch(e){
-    res.status(500).json({message:e.message})
+  } catch(err){
+    res.status(500).json({message:err.message})
   }
 }
 
@@ -134,8 +134,8 @@ const betterPlayer = async(req, res) => {
   try {
     const player = await Player.findAll({where:{winRate:betterWinRate}})
     res.status(200).json({ player })
-  } catch (e) {
-    res.status(500).json({message:e.message})
+  } catch (err) {
+    res.status(500).json({message:err.message})
   }
 }
 
@@ -147,8 +147,8 @@ const worstPlayer = async(req, res) => {
   try {
     const player = await Player.findAll({where:{winRate:worstWinRate}})
     res.status(200).json({ player })
-  } catch (e) {
-    res.status(500).json({message:e.message})
+  } catch (err) {
+    res.status(500).json({message:err.message})
   }
 }
 
