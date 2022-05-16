@@ -1,3 +1,3 @@
-const {connectMySQLDB} = require('./MySQLPersistence/db')
-connectMySQLDB()
+const {connectMySQL} = require('./MySQLPersistence/db')
+connectMySQL()
 

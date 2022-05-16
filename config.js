@@ -1,5 +1,5 @@
 
-const configDB = {
+const config_db = {
 
   user:"root",
   password: "root1111_",
@@ -9,4 +9,4 @@ const configDB = {
 
 }
 
-module.exports = configDB
+module.exports = config_db

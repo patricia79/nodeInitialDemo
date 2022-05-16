@@ -1,30 +1,29 @@
 const express = require('express')
-const jocAPI = express.Router()
 const router = express.Router()
 
 const { 
   addPlayer, 
   playerRollDices, 
-  modifyPlayerName, 
+  updatePlayer, 
   deleteGames, 
   getAllPlayers, 
   playerGamesList,
   generalRanking,
-  getWorstPlayer,
-  getBetterPlayer
+  worstPlayer,
+  betterPlayer
 
 } = require('../controllers/controllersMySql');
 
   
 
-jocAPI.post('/players', addPlayer) //POST  crea un jugador
-jocAPI.post('/players/:id/games', playerRollDices) //POST /players/{id}/games: un jugador específic realitza una tirada --Works
-jocAPI.put('/players/:id', modifyPlayerName) //PUT  modifica el nom del jugador --Works
-jocAPI.delete('/players/:id/games', deleteGames) // DELETE /players/{id}/games: elimina les tirades del jugador --Works
-jocAPI.get('/players', getAllPlayers)//GET : retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits --Works
-jocAPI.get('/players/:id/games', playerGamesList)//GET /players/{id}/games: retorna el llistat de jugades per un jugador. --Works
-jocAPI.get('/players/ranking', generalRanking) //GET : retorna el percentatge mig d’èxits del conjunt de tots els jugadors --Works
-jocAPI.get('/players/ranking/loser', getWorstPlayer )//GET : retorna el jugador amb pitjor percentatge d’èxit --Works
-jocAPI.get('/players/ranking/winner', getBetterPlayer)//GET : retorna el jugador amb millor percentatge d’èxit  --Works
+router.post('/players', addPlayer) 
+router.post('/players/:id/games', playerRollDices)
+router.put('/players/:id', updatePlayer) 
+router.delete('/players/:id/games', deleteGames)
+router.get('/players', getAllPlayers)
+router.get('/players/:id/games', playerGamesList)
+router.get('/players/ranking', generalRanking) 
+router.get('/players/ranking/loser', worstPlayer )
+router.get('/players/ranking/winner', betterPlayer)
 
-module.exports = jocAPI, router
+module.exports = router

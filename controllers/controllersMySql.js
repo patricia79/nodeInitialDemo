@@ -1,19 +1,23 @@
 const {Player, Roll} = require('../MySQLPersistence/db'),
 uniqid = require('uniqid'),
-  rollDices = require('../dicesLogic/dices')
+rollDices = require('../dicesLogic/dices')
+
+//TODO POST  crea un jugador 
 
 const addPlayer = async(req, res) => {
   try {
     let { name } = req.body
     name? true : name = uniqid('ANONIM-')
-    const playerStored = await Player.create({name})
-    res.status(201).json({player: playerStored})
+    const playerCreated = await Player.create({name})
+    res.status(201).json({player: playerCreated})
   } catch (e){
     res.status(500).json({message: e.message})
   }
 }
 
-const modifyPlayerName = async(req, res) =>{
+//TODO PUT  modifica el nom del jugador
+
+const updatePlayer = async(req, res) =>{
   const id = req.params.id
   const { name } = req.body
   try{
@@ -24,10 +28,13 @@ const modifyPlayerName = async(req, res) =>{
       }
     })
     res.status(200).json({player})
-  } catch (e){
-    res.status(404).message({message: 'player not found'})
+  } catch (err){
+    res.status(404).message({message: 'NOT PLAYER'})
   }
 }
+
+
+//TODO GET : retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
 
 const getAllPlayers = async(req, res) => {
   const players = await Player.findAll({ attributes:['id','name','winRate'],
@@ -36,26 +43,28 @@ const getAllPlayers = async(req, res) => {
    res.status(200).json({ players })
 }
 
+//TODO  POST /players/{id}/games: un jugador específic realitza una tirada
+
 const playerRollDices = async(req, res) => {
   const PlayerId = req.params.id
   const {
-    diceA,
-    diceB,
-    rollScore,
-    veredict
+    dice1,
+    dice2,
+    result,
+    result_S
   } = rollDices()
 
   try{
     const roll = await Roll.create({
-      diceA,
-      diceB,
-      rollScore,
-      veredict,
+      dice1,
+      dice2,
+      result,
+      result_S,
       PlayerId,
     })
     let arr = []
-    if(veredict==='win')await Player.increment(['totalGames','totalWins'],{where:{id:PlayerId}})
-    if(veredict==='lose')await Player.increment('totalGames',{where:{id:PlayerId}})
+    if(result_S==='win')await Player.increment(['totalGames','totalWins'],{where:{id:PlayerId}})
+    if(result_S==='lose')await Player.increment('totalGames',{where:{id:PlayerId}})
     const player = await Player.findAll({attributes:['totalGames','totalWins'],where:{id:PlayerId}})
     arr.push(player)
     const { totalGames, totalWins } = arr[0][0].dataValues
@@ -67,6 +76,9 @@ const playerRollDices = async(req, res) => {
     res.status(500).json({message:e.message})
   }
 }
+
+
+ // TODO DELETE /players/{id}/games: elimina les tirades del jugador
 
 const deleteGames = async(req, res) => {
   const id = req.params.id
@@ -84,6 +96,8 @@ const deleteGames = async(req, res) => {
   }
 }
 
+//TODO GET /players/{id}/games: retorna el llistat de jugades per un jugador
+
 const playerGamesList = async(req, res) => {
   const id = req.params.id
   try{
@@ -98,6 +112,7 @@ const playerGamesList = async(req, res) => {
   }
 }
 
+//TODO GET : retorna el percentatge mig d’èxits del conjunt de tots els jugadors
 
 const generalRanking = async(req, res) => {
   try {
@@ -110,7 +125,10 @@ const generalRanking = async(req, res) => {
   }
 }
 
-const getBetterPlayer = async(req, res) => {
+
+// TODO GET : retorna el jugador amb millor percentatge d’èxit
+
+const betterPlayer = async(req, res) => {
   const betterWinRate = await Player.max('winRate')
   console.log(betterWinRate)
   try {
@@ -121,7 +139,9 @@ const getBetterPlayer = async(req, res) => {
   }
 }
 
-const getWorstPlayer = async(req, res) => {
+//TODO GET : retorna el jugador amb pitjor percentatge d’èxit
+
+const worstPlayer = async(req, res) => {
   const worstWinRate = await Player.min('winRate')
   console.log(worstWinRate)
   try {
@@ -134,12 +154,12 @@ const getWorstPlayer = async(req, res) => {
 
 module.exports = {
   addPlayer,
-  modifyPlayerName,
+  updatePlayer,
   getAllPlayers,
   playerRollDices,
   deleteGames,
   playerGamesList,
   generalRanking,
-  getBetterPlayer,
-  getWorstPlayer
+  betterPlayer,
+  worstPlayer
 }

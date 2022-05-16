@@ -1,14 +1,14 @@
 function rollDices() {
-    const diceA = Math.floor(6*Math.random())+1;
-    const diceB = Math.floor(6*Math.random())+1;
-    const veredict = diceA + diceB === 7 ? 'win' : 'lose'
-    return {
-      diceA,
-      diceB,
-      rollScore: diceA + diceB,
-      veredict
-    }
+  const dice1 = Math.floor(6*Math.random())+1;
+  const dice2 = Math.floor(6*Math.random())+1;
+  const result_S = dice1 + dice2 === 7 ? 'win' : 'lose'
+  return {
+    dice1,
+    dice2,
+    result: dice1 + dice2,
+    result_S
   }
-  
-  
-  module.exports = rollDices
+}
+
+
+module.exports = rollDices

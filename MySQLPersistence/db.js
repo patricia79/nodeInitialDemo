@@ -1,84 +1,97 @@
-const 
-mysql = require('mysql2'),
-Sequelize = require('sequelize'),
-configDB = require('../config'),
-sequelize = new Sequelize(configDB.database, configDB.user, configDB.password, { dialect: 'mysql' });
+const mysql = require("mysql2");
+const Sequelize = require("sequelize");
+const config_db = require("../config");
+const sequelize = new Sequelize(
+  config_db.database,
+  config_db.user,
+  config_db.password,
+  { dialect: "mysql" }
+);
 
-
-async function connectMySQLDB(){
-    
-    const connection = mysql.createConnection({ host:configDB.host, user:configDB.user, password:configDB.password });
-    connection.query(`CREATE DATABASE IF NOT EXISTS \`${configDB.database}\`;`, (err, result) =>{
-        if(err) throw err
-        sequelize.sync()
-            .then(()=>console.log('MySQLDB connected'))
-            .catch(err=>console.log(err))
-        }
-        )
-       
-    connection.end();
+async function connectMySQL() {
+  const connection = mysql.createConnection({
+    host: config_db.host,
+    user: config_db.user,
+    password: config_db.password,
+  });
+  connection.query(
+    `CREATE DATABASE IF NOT EXISTS \`${config_db.database}\`;`,
+    (err, result) => {
+      if (err) throw err;
+      sequelize
+        .sync()
+        .then(() => console.log("Synchronized tables"))
+        .catch((error) => console.log("Has occurred an error", error));
+    }
+  );
+  connection.end();
 }
 
-const Roll = sequelize.define('Roll',{
+const Roll = sequelize.define(
+  "Roll", {
     id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    diceA:{
-        type: Sequelize.INTEGER,
+    dice1: {
+      type: Sequelize.INTEGER,
     },
-    diceB:{
-        type: Sequelize.INTEGER,
+    dice2: {
+      type: Sequelize.INTEGER,
     },
-    rollScore:{
-        type: Sequelize.INTEGER,
+    resultScore: {
+      type: Sequelize.INTEGER,
     },
-    veredict:{
-        type: Sequelize.STRING,
+    result: {
+      type: Sequelize.STRING,
     },
-},
-    {
-        timestamps:false
-    }
-)
+  },
+  {
+    timestamps: false,
+  }
+);
 
-const Player = sequelize.define('player', {
+const Player = sequelize.define(
+  "player",
+  {
     id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
-    }, 
-    totalGames:{
-        type: Sequelize.INTEGER,
-        defaultValue:0
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
     },
-    totalWins:{
-        type: Sequelize.INTEGER,
-        defaultValue:0
-    }, 
-    winRate:{
-        type: Sequelize.DECIMAL(10,2),
-        defaultValue:0
-    }, 
-}, {
+    totalGames: {  
+
+      type: Sequelize.INTEGER,
+      defaultValue: 0,
+    },
+    totalWins: {
+      type: Sequelize.INTEGER,
+      defaultValue: 0,
+    },
+    winRate: {
+      type: Sequelize.DECIMAL(10, 2),
+      defaultValue: 0,
+    },
+  },
+  {
     timestamps: true,
     updatedAt: false,
-    createdAt: 'data'
-    }
-)
+    createdAt: "data",
+  }
+);
 
-Player.hasMany(Roll,{onDelete:'cascade'})
-Roll.belongsTo(Player)
+Player.hasMany(Roll, { onDelete: "cascade" });
+Roll.belongsTo(Player);
 
 module.exports = {
-    Player,
-    Roll,
-    sequelize,
-    connectMySQLDB
-}
+  Player,
+  Roll,
+  sequelize,
+  connectMySQL,
+};
