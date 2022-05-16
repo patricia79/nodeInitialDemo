@@ -1,6 +1,5 @@
 
-const Sequelize = require('sequelize')
-const sequelize = require("../dbMySQL")
+
 const Player = require("../models/playerMdl")
 const uniqid = require('uniqid')
 const { dice_game, date_now } = require('../game_logic')
@@ -9,8 +8,9 @@ const { dice_game, date_now } = require('../game_logic')
 
 const addPlayer = async (req, res) => {
   try {
-    let name = req.body.namePlayer;
+    let name = req.body.name;
     name ? true : (name = uniqid("ANONYMOUS-"));
+    console.log(Player)
     const playerCreated = await Player.create({ name });
     res
       .status(200)
@@ -26,8 +26,8 @@ const addPlayer = async (req, res) => {
 //TODO PUT /players: modifica el nom del jugador/ updatePlayer
 
 const updatePlayer = async (req, res) => {
-  let id = req.params.idPlayer;
-  let update = req.body.namePlayer;
+  let id = req.params.id;
+  let update = req.body;
   try {
     await Player.findByIdAndUpdate(id, update, (err, playerUpdated) => {
       res.status(200).json({ Player: playerUpdated });
@@ -38,11 +38,6 @@ const updatePlayer = async (req, res) => {
     }
   }
 };
-
-
-//TODO GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors /ranking
-
-
 
 
 //TODO GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits/getAllPlayers
@@ -114,7 +109,7 @@ const playersListWinRatio = async(req, res) => {
   }
   //TODO GET /players/{id}/games: retorna el llistat de jugades per un jugador
   
-  const rounds = async(req, res) => {
+  const playerRounds = async(req, res) => {
     try {
       const totalPlayers = await Player.count()
       const gralWinRatio = sumWinRatio/totalPlayers
@@ -149,5 +144,5 @@ const getLoser = async(req, res) => {
   }
 }
  module.exports = { 
-   addPlayer, updatePlayer, getAllPlayers, deleteRounds, addRound, rounds, getLoser, playersListWinRatio,
+   addPlayer, updatePlayer, getAllPlayers, deleteRounds, addRound, playerRounds, getLoser, playersListWinRatio,
   getWinner};
