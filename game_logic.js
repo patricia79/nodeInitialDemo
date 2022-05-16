@@ -1,16 +1,12 @@
-"use strict";
+
 
 function dice_game() {
   let dice1 = Math.floor(6 * Math.random()) + 1;
   let dice2 = Math.floor(6 * Math.random()) + 1;
-  let result = dice1 + dice2;
-  if (result === 7) {
-    console.log(`Congratulations!! You've won!! `);
-  } else {
-    console.log(`Sorry, you lost!! `);
-  }
-
-  return { dice1, dice2, result: dice1 + dice2 };
+  let result_S = dice1 + dice2 === 7 ? 'win' : 'lose'
+    
+  
+  return { dice1, dice2, result1: dice1 + dice2, result_S };
 }
 
 let date_now = () =>{
@@ -21,5 +17,6 @@ let date_now = () =>{
     return date_time;
 };
 
-
-export {dice_game, date_now}
+module.exports = {
+  dice_game, date_now 
+ }

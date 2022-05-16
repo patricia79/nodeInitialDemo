@@ -17,6 +17,7 @@ Has de tenir en compte els següents detalls de construcció:
 
 POST /players: crea un jugador
 PUT /players: modifica el nom del jugador
+GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
 POST /players/{id}/games: un jugador específic realitza una tirada
 DELETE /players/{id}/games: elimina les tirades del jugador
 GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
@@ -36,12 +37,6 @@ Afegix un endpoint /login que permeti accedir a un administrador amb usuari i co
 
 // let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-//TODO POST /players/{id}/games: un jugador específic realitza una tirada /addGame
-//TODO DELETE /players/{id}/games: elimina les tirades del jugador / deleteGames
-//TODO GET /players: retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits /getAllPlayers
-//TODO GET /players/{id}/games: retorna el llistat de jugades per un jugador /getAllGames
-//TODO GET /players/ranking: retorna el percentatge mig d’èxits del conjunt de tots els jugadors /ranking
-//TODO GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit /getLoser
-//TODO GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit / getWinner
+
 
 

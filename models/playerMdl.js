@@ -1,32 +1,38 @@
-const Player = sequelize.define("Player", {
-  idPlayer: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  namePlayer: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  registerDate: {
-    type: Sequelize.DATE,
-    allowNull: false,
-  },
-  winningAverage: { // promedio ganados
-    type: Sequelize.DECIMAL(10, 2),
-    defaultValue: 0,
-  },
-  score: { // total ganados
-    type: Sequelize.INTEGER,
-    defaultValue: 0,
-  },
+module.exports = (sequelize, type) => {
+  return sequelize.define("Player", {
+    idPlayer: {
+      type: type.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
 
-  totalGames: { // total jugados
-    type: Sequelize.INTEGER,
-    defaultValue: 0,
-  },
-});
+    namePlayer: {
+      type: type.STRING,
+      allowNull: false,
+      unique: true,
+    },
 
-module.exports = {
-  Player 
-}
+    registerDate: {
+      type: type.DATE,
+      allowNull: false,
+    },
+
+    winRatio: {
+      // promedio ganados
+      type: type.DECIMAL(10, 2),
+      defaultValue: 0,
+    },
+
+    score: {
+      // total ganados
+      type: type.INTEGER,
+      defaultValue: 0,
+    },
+    totalPlayed: {
+      // total jugados
+      type: type.INTEGER,
+      defaultValue: 0,
+    },
+     timestamps: false,
+    }
+   )}
