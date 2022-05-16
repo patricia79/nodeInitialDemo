@@ -1,31 +1,12 @@
-const express = require('express');
-const app = express();
+const
+express = require('express'),
+app = express(),
+jocAPI = require('./routes/router')
+require('./connectionDB')
 
-const config = require("./config");
-const bodyParser = require("body-parser");
-const { sequelize } = require('./dbMySQL')
-
-require("dotenv").config();
-const router = require('./routes/dicesApi')
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(router);
-
-
-sequelize.sync({ force: false }).then(() => {
-  console.log("Synchronized tables");
-}).catch(error => {
-  console.log('Has occurred an error', error);
-});
-
-sequelize.drop().then(() => {
-  console.log("Deleted tables");
-}).catch(error => {
-  console.log('Has occurred an error', error);
-});
-
-app.listen(config.port, () => {
-  console.log(`API REST en http://localhost:${config.port}/`);
-});
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use(jocAPI)
+app.listen(3000, ()=>{
+  console.log('server running on port 3000')
+})
