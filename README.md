@@ -1,6 +1,5 @@
-🧬 ### Branca api 4.2
-
-Entrega 4.2: Node REST + DB + JWT
+🧬 
+### Branca api 4.2: Entrega 4.2: Node REST + DB + JWT
 
 ## Instruccions per a iniciar el projecte:
 
@@ -29,8 +28,10 @@ npm run dev
 
 Els endpoints establerts eren els següents:
 
-post('/players'): crea un jugador
-post('/players/:id/games'): un jugador específic realitza una tirada 
+post('/players'): crea un jugador;
+
+post('/players/:id/games'): un jugador específic realitza una tirada ;
+
 get('/players'): retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits
 get('/players/:id/games')retorna el llistat de jugades per un jugador
 get('/players/ranking'): retorna el percentatge mig d’èxits del conjunt de tots els jugadors
