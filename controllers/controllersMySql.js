@@ -1,16 +1,15 @@
-const 
-  {Player, Roll} = require('../MySQLPersistence/db'),
-  uniqid = require('uniqid'),
-  rollDices = require('../logicaDaus/daus')
+const {Player, Roll} = require('../MySQLPersistence/db'),
+uniqid = require('uniqid'),
+  rollDices = require('../dicesLogic/dices')
 
-const addNewPlayer = async(req, res) => {
+const addPlayer = async(req, res) => {
   try {
     let { name } = req.body
     name? true : name = uniqid('ANONIM-')
     const playerStored = await Player.create({name})
-    res.status(201).send({player: playerStored})
+    res.status(201).json({player: playerStored})
   } catch (e){
-    res.status(500).send({message: e.message})
+    res.status(500).json({message: e.message})
   }
 }
 
@@ -24,7 +23,7 @@ const modifyPlayerName = async(req, res) =>{
         id:id
       }
     })
-    res.status(200).send({player})
+    res.status(200).json({player})
   } catch (e){
     res.status(404).message({message: 'player not found'})
   }
@@ -34,7 +33,7 @@ const getAllPlayers = async(req, res) => {
   const players = await Player.findAll({ attributes:['id','name','winRate'],
     include:[Roll]
   })
-   res.status(200).send({ players })
+   res.status(200).json({ players })
 }
 
 const playerRollDices = async(req, res) => {
@@ -45,7 +44,7 @@ const playerRollDices = async(req, res) => {
     rollScore,
     veredict
   } = rollDices()
-  let win
+
   try{
     const roll = await Roll.create({
       diceA,
@@ -63,9 +62,9 @@ const playerRollDices = async(req, res) => {
     const winRate = (totalWins/totalGames)*100
     await Player.update({winRate},{where:{id:PlayerId}})
     const playerRolled = await Player.findAll({attributes:['name'], where:{id:PlayerId}})
-    res.status(200).send({playerRolled, roll})
+    res.status(200).json({playerRolled, roll})
   } catch (e) {
-    res.status(500).send({message:e.message})
+    res.status(500).json({message:e.message})
   }
 }
 
@@ -79,9 +78,9 @@ const deleteGames = async(req, res) => {
       winRate:0
     },{where:{id:id}})
     const player = await Player.findAll({where:{id:id}})
-    res.status(200).send({player})
+    res.status(200).json({player})
   } catch (e){
-    res.status(500).send({message: e.message})
+    res.status(500).json({message: e.message})
   }
 }
 
@@ -93,9 +92,9 @@ const playerGamesList = async(req, res) => {
       attributes:['id','name'],
       where:{id:id},include:[Roll]
     })
-    res.status(200).send(player)
+    res.status(200).json(player)
   } catch (e) {
-    res.status(404).send({message:'player not found'})
+    res.status(404).json({message:'player not found'})
   }
 }
 
@@ -105,9 +104,9 @@ const generalRanking = async(req, res) => {
     const totalPlayers = await Player.count()
     const sumWinRate = await Player.sum('winRate')
     const generalWinRate = sumWinRate/totalPlayers
-    res.status(200).send({generalWinRate})
+    res.status(200).json({generalWinRate})
   } catch(e){
-    res.status(500).send({message:e.message})
+    res.status(500).json({message:e.message})
   }
 }
 
@@ -116,9 +115,9 @@ const getBetterPlayer = async(req, res) => {
   console.log(betterWinRate)
   try {
     const player = await Player.findAll({where:{winRate:betterWinRate}})
-    res.status(200).send({ player })
+    res.status(200).json({ player })
   } catch (e) {
-    res.status(500).send({message:e.message})
+    res.status(500).json({message:e.message})
   }
 }
 
@@ -127,14 +126,14 @@ const getWorstPlayer = async(req, res) => {
   console.log(worstWinRate)
   try {
     const player = await Player.findAll({where:{winRate:worstWinRate}})
-    res.status(200).send({ player })
+    res.status(200).json({ player })
   } catch (e) {
-    res.status(500).send({message:e.message})
+    res.status(500).json({message:e.message})
   }
 }
 
 module.exports = {
-  addNewPlayer,
+  addPlayer,
   modifyPlayerName,
   getAllPlayers,
   playerRollDices,

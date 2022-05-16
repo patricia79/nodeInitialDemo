@@ -4,15 +4,18 @@ Sequelize = require('sequelize'),
 configDB = require('../config'),
 sequelize = new Sequelize(configDB.database, configDB.user, configDB.password, { dialect: 'mysql' });
 
+
 async function connectMySQLDB(){
     
     const connection = mysql.createConnection({ host:configDB.host, user:configDB.user, password:configDB.password });
     connection.query(`CREATE DATABASE IF NOT EXISTS \`${configDB.database}\`;`, (err, result) =>{
         if(err) throw err
         sequelize.sync()
-        .then(()=>console.log('MySQLDB connected'))
-        .catch(err=>console.log(err))
-    })
+            .then(()=>console.log('MySQLDB connected'))
+            .catch(err=>console.log(err))
+        }
+        )
+       
     connection.end();
 }
 
@@ -40,7 +43,7 @@ const Roll = sequelize.define('Roll',{
     }
 )
 
-const Player = sequelize.define('Player', {
+const Player = sequelize.define('player', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,

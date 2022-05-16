@@ -1,25 +1,23 @@
-const
-  express = require('express'),
-  jocAPI = express.Router(),
-  controllersURL = process.env.NODE_ENV === 'mongo' 
-  ? '../controllers/controllersDiceMongo' 
-  : '../controllers/controllersDiceMysql',
-  { 
-    addNewPlayer,
-    getAllPlayers,
-    modifyPlayerName,
-    playerRollDices,
-    deleteGames,
-    playerGamesList,
-    generalRanking,
-    getBetterPlayer,
-    getWorstPlayer
-  } = require(controllersURL)
+const express = require('express')
+const jocAPI = express.Router()
+const router = express.Router()
 
+const { 
+  addPlayer, 
+  playerRollDices, 
+  modifyPlayerName, 
+  deleteGames, 
+  getAllPlayers, 
+  playerGamesList,
+  generalRanking,
+  getWorstPlayer,
+  getBetterPlayer
+
+} = require('../controllers/controllersMySql');
 
   
 
-jocAPI.post('/players', addNewPlayer) //POST  crea un jugador   --Works
+jocAPI.post('/players', addPlayer) //POST  crea un jugador
 jocAPI.post('/players/:id/games', playerRollDices) //POST /players/{id}/games: un jugador específic realitza una tirada --Works
 jocAPI.put('/players/:id', modifyPlayerName) //PUT  modifica el nom del jugador --Works
 jocAPI.delete('/players/:id/games', deleteGames) // DELETE /players/{id}/games: elimina les tirades del jugador --Works
@@ -29,5 +27,4 @@ jocAPI.get('/players/ranking', generalRanking) //GET : retorna el percentatge mi
 jocAPI.get('/players/ranking/loser', getWorstPlayer )//GET : retorna el jugador amb pitjor percentatge d’èxit --Works
 jocAPI.get('/players/ranking/winner', getBetterPlayer)//GET : retorna el jugador amb millor percentatge d’èxit  --Works
 
-
-module.exports = jocAPI
+module.exports = jocAPI, router
