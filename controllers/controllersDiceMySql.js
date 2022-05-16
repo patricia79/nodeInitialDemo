@@ -1,6 +1,4 @@
 const 
-  Sequelize = require('sequelize'),
-  {sequelize} = require('../MySQLPersistence/db'),
   {Player, Roll} = require('../MySQLPersistence/db'),
   uniqid = require('uniqid'),
   rollDices = require('../logicaDaus/daus')

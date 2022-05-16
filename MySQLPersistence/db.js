@@ -1,7 +1,8 @@
-const mysql = require('mysql2')
-const Sequelize = require('sequelize')
-const configDB = require('../config')
-const sequelize = new Sequelize(configDB.database, configDB.user, configDB.password, { dialect: 'mysql' });
+const 
+mysql = require('mysql2'),
+Sequelize = require('sequelize'),
+configDB = require('../config'),
+sequelize = new Sequelize(configDB.database, configDB.user, configDB.password, { dialect: 'mysql' });
 
 async function connectMySQLDB(){
     
@@ -78,9 +79,3 @@ module.exports = {
     sequelize,
     connectMySQLDB
 }
-
-
-
-
-
-
