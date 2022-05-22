@@ -37,6 +37,6 @@ Afegix un endpoint /login que permeti accedir a un administrador amb usuari i co
 
 // let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 
-
+//
 
 
